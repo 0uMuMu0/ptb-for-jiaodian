@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>ptb serving</title>
+</head>
+<body>
+<div class="row">
+
+    <div class="col-lg-8 col-lg-offset-4"  >
+        <form class="form-inline" action="predict">
+            <div class="form-group">
+                <label for="exampleInputName2">path</label>
+                <input type="text" class="form-control" id="exampleInputName2" name='path' placeholder="<UNK>,<UNK>">
+            </div>
+            <button type="submit" class="btn btn-default">predict</button>
+        </form>
+    </div>
+</div>
+ {% if data %}
+<div class="row">
+        <div class="col-lg-4 col-lg-offset-3">
+            <p class="text-info center-block" >Current path is:<span><mark>{{ data['path'] }}</mark></span></p>
+        </div>
+        <div class="col-lg-4 col-lg-offset-3">
+            <p class="text-info center-block" >Predict_url is:<span><mark>{{ data['prediction_url'] }}</mark></span></p>
+        </div>
+
+</div>
+ {% endif %}
+</body>
+</html>

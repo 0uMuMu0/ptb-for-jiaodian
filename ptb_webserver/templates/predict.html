@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        .container{
+            border-color: #b92c28;
+            border-width: medium;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>image similarity</title>
+</head>
+<body>
+<div class="row">
+
+    <div class="col-lg-8 col-lg-offset-4"  >
+        <form class="form-inline" action="compute_similarity_for_desc">
+            <div class="form-group">
+                <label for="exampleInputName2">directory:</label>
+                <input type="text" class="form-control" id="exampleInputName2" name='category' placeholder="scooter"
+               {% if data %} value="{{  data['image_number'] }}"
+                {% endif %}>
+            </div>
+            <button type="submit" class="btn btn-default">submit</button>
+        </form>
+
+    </div>
+</div>
+ {% if data %}
+
+ {% for item in data %}
+               <div class="row">
+
+                  <div class="col-lg-4 col-lg-offset-1 ">
+                   <img src="{{ url_for('static', filename='images_categories/scooter/'+ item.image_1.image_num+ '.jpg') }}">
+                   <p>image number: {{ item.image_1.image_num }}</p>
+                   <p>image desc: <span style="color:red;">{{ item.image_1.desc }}</span></p>
+                  </div>
+
+                  <div class="col-lg-4">
+                   <img src="{{ url_for('static', filename='images_categories/scooter/'+ item.image_2.image_num+ '.jpg') }}">
+                   <p>image number: {{ item.image_2.image_num }}</p>
+                   <p>image desc: <span style="color:red;">{{ item.image_2.desc }}</span></p>
+                  </div>
+                  <div class="col-lg-3">
+                      <p>Euclidean distance:<span style="color:red;"> {{ item.simi }}</span></p>
+                  </div>
+
+
+              </div>
+     <hr style="height: 50px; color: #b92c28">
+
+ {% endfor %}
+ {% endif %}
+</body>
+</html>
